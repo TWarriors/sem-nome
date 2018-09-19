@@ -9,16 +9,28 @@ public class Triangulo {
     private double a, b, c;
     
     public Triangulo make() {
+        
         this.scan = new Scanner(System.in);
         this.propriedades = new HashSet<>();
         
         System.out.println("Informa o tipo do triangulo");
         System.out.println("Informa o valor do lado a");
+
         this.a = this.scan.nextDouble();
         System.out.println("Informa o valor do lado b");
         this.b = this.scan.nextDouble();
         System.out.println("Informa o valor do lado c");
         this.c = this.scan.nextDouble();
+        
+        return this;
+    }
+    
+    public Triangulo make(double a, double b, double c) {
+        this.propriedades = new HashSet<>();
+        
+        this.a = a;
+        this.b = b;
+        this.c = c;
         
         return this;
     }
@@ -48,10 +60,6 @@ public class Triangulo {
             if (this.a != this.b && this.b != this.c && this.c != this.a) {
                 this.propriedades.add("Escaleno");
             }
-            if (((this.a * this.a + this.b * this.b + this.c * this.c) - this.hipotenusa * this.hipotenusa) == this.hipotenusa
-                    * this.hipotenusa) {
-                this.propriedades.add("Retângulo");
-            }
         } else {
             this.propriedades.add("Inválido");
         }
@@ -59,10 +67,14 @@ public class Triangulo {
         return this;
     }
     
-    public void getResultado() {
+    public void printResultado() {
         System.out.println("Propriedades do triangulo ->");
         this.propriedades.forEach((valor) -> {
             System.out.println(valor);
         });
+    }
+    
+    public Set<String> getResultado() {
+        return this.propriedades;
     }
 }
